@@ -5,12 +5,12 @@ import java.util.Random;
 
 
 public class Workshop {
-    WorkshopList name;
-    int timer ;
-    boolean working = false;
-    int timeTodo;
-    int amount;
-    int level=1;
+    public WorkshopList name;
+    public int timer ;
+    public boolean working = false;
+    public int timeTodo;
+    public int amount;
+    public int level=1;
     public Workshop(WorkshopList name) {
         this.name = name;
     }

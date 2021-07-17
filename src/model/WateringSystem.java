@@ -5,7 +5,7 @@ public class WateringSystem {
     //final int price=0;
     final int maxAmount=5;
     public int timer=0;
-    well_state state = well_state.READY_TO_USE;
+    public well_state state = well_state.READY_TO_USE;
     public int waterAmount= maxAmount;
     public int filling(){
         if (state==well_state.FILLING_IN_PROGRESS)
@@ -44,9 +44,11 @@ public class WateringSystem {
 
 
 }
+//
+//enum well_state{
+//    EMPTY,
+//    READY_TO_USE,
+//    FILLING_IN_PROGRESS
+//}
 
-enum well_state{
-    EMPTY,
-    READY_TO_USE,
-    FILLING_IN_PROGRESS
-}
+

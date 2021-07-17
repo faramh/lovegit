@@ -118,7 +118,7 @@ public class Manager {
         }
         else if(result==1) {
             OutputProcessor.get_output_Instatnce().ShowOutputError("Your bucket is filling ... ! ");
-            OutputProcessor.get_output_Instatnce().ShowOutputError("Please wait ... ! ");
+           // OutputProcessor.get_output_Instatnce().ShowOutputError("Please wait ... ! ");
         }
         else
             OutputProcessor.get_output_Instatnce().ShowOutputError("Your bucket is empty ... ! ");

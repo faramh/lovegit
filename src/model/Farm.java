@@ -38,7 +38,6 @@ public class Farm {
 		if (coins< label.cost[0])
 			return 1;
 		boolean already_exist = false;
-
 		for (Workshop w:workshops) {
 			if (w.name==label){
 				already_exist = true;

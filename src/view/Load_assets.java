@@ -3,6 +3,7 @@ package view;
 import model.DomesticAnimal;
 import model.ProductList;
 import model.WildList;
+import model.WorkshopList;
 
 import javax.swing.*;
 
@@ -35,6 +36,18 @@ public class Load_assets {
     }
 
     static ImageIcon wild (WildList name,int cage){
+        //todo
+        return null;
+    }
+
+    static ImageIcon workshop_img (WorkshopList name,int frame,int leve){
+
+        //todo
+        return null;
+
+    }
+
+    static ImageIcon well (int frame){
         //todo
         return null;
     }

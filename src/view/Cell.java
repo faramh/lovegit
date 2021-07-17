@@ -22,6 +22,8 @@ public class Cell extends JPanel{
         row = r;
         col= c;
 
+
+
     }
 
 
@@ -35,6 +37,8 @@ public class Cell extends JPanel{
                 }else if (e.getButton()==3){
                     Manager.get_manager_Instatnce().cage_manage(col,row);
 
+                }else  if (e.getButton()==2){
+                    Manager.get_manager_Instatnce().plant_manage(col,row);
                 }
 
                 Game_window.get_instance().update_everything();

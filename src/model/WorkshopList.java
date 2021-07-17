@@ -15,10 +15,10 @@ public enum WorkshopList {
 
     iceCreamProcessing(7,ProductList.packedMilk,ProductList.iceCream,550,1100);
 
-    int [] cost;
-    ProductList output,input;
-    int time ;
-    int maxlevel = 2;
+    public int [] cost;
+    public ProductList output,input;
+    public int time ;
+    public int maxlevel = 2;
 
     WorkshopList( int time ,ProductList input,ProductList output , int ... cost ) {
         this.cost = cost;
