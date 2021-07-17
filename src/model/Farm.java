@@ -29,7 +29,7 @@ public class Farm {
 				product_map[i][j] = new ArrayList<>();
 			}
 		}
-
+		//todo
 		this.tasks = tasks;
 		coins = tasks.init_coin+user_coin;
 	}

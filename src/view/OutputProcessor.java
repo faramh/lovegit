@@ -4,6 +4,7 @@ import control.Manager;
 import model.*;
 import model.Farm;
 
+import javax.swing.*;
 import java.util.Map;
 
 public class OutputProcessor {
@@ -22,10 +23,10 @@ public class OutputProcessor {
         this.mg = manager;
     }*/
     public void ShowOutputError(String Error){
-        System.err.println(Error);
+        JOptionPane.showMessageDialog(null,Error,"",JOptionPane.ERROR_MESSAGE);
     }
     public void ShowOutputUserNotice(String Notice){
-        System.out.print(Notice);
+        JOptionPane.showMessageDialog(null,Notice,"",JOptionPane.INFORMATION_MESSAGE);
     }
 
 

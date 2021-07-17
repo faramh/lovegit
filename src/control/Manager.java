@@ -40,44 +40,32 @@ public class Manager {
         return manager_state;
     }
 
-    public void login_Check(String  username_input , String password_input){
+    public boolean login_Check(String  username_input , String password_input){
         switch (udb.log_in_check(username_input,password_input)){
             case SUCCESS:
-                OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Success");
                 loged_in_user = udb.current_user;
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("wellcome "+ loged_in_user.username);
-                //InputProcessor.get_input_Instatnce().menu();
-                new Menu_frame();
-                break;
+                return true;
             case USERNAME_DOSENT_EXIST:
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Username doesn't exist");
-                InputProcessor.get_input_Instatnce().login();
-                break;
+                return false;
             case INCORRECT_PASSWORD:
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Incorrect password");
-                InputProcessor.get_input_Instatnce().login();
-                break;
+                return false;
         }
+        return false;
     }
 
-    public void signup_Password_Check(String  username_input , String password_input){
+    public boolean signup_Password_Check(String  username_input , String password_input){
         switch (udb.sing_up_check(username_input,password_input)){
             case SUCCESS:
                 FileOperator.Writing(gson.toJson(udb,UserDataBase.class),"data.txt");
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Signed up successfully");
                 loged_in_user = udb.current_user;
-                //InputProcessor.get_input_Instatnce().menu();
-                //login_Panel.get_login_Panel_Instatnce().music(false);
-                new Menu_frame();
-                break;
+                return true;
             case ALREADY_EXIST:
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("This username already exist ");
-                login_Panel.get_login_Panel_Instatnce().frame.setVisible(false);
-               // login_Panel.get_login_Panel_Instatnce().music(1);
-                login_Panel.get_login_Panel_Instatnce().reset_key();
-                new Menu_frame();
-
-                break;
+                return false;
             case WEAK_PASSWORD:
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("The password is too weak"); // todo
                 InputProcessor.get_input_Instatnce().login();
@@ -87,20 +75,19 @@ public class Manager {
                 InputProcessor.get_input_Instatnce().login();
                 break;
         }
+
+        return false;
     }
 
     public void workshop_upgrade (WorkshopList label){
         switch (farm.upgrade(label)){
             case 1:
                 OutputProcessor.get_output_Instatnce().ShowOutputError("not enough coin");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
                 break;
             case 2:
                 OutputProcessor.get_output_Instatnce().ShowOutputError("doesnt exist");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
                 break;
             case 0:
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
                 break;
 
         }
@@ -111,11 +98,10 @@ public class Manager {
     public boolean level_Check(int level){
         if (loged_in_user.level>=level){
             OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("starting level "+ level);
-            farm = new Farm(all_tasks[level-1],loged_in_user.reward_coin);
+            farm = new Farm(all_tasks[level-1],loged_in_user.reward_coin);//todo
             return true;
         }
         else{
-            OutputProcessor.get_output_Instatnce().ShowOutputError("you haven't unlocked this level yet");
             return false;
         }
     }
@@ -137,65 +123,54 @@ public class Manager {
         else
             OutputProcessor.get_output_Instatnce().ShowOutputError("Your bucket is empty ... ! ");
 
-        InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
     }
 
     public void plant_manage(int x,int y) {
-        if (farm.plant(x, y)) {
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
-        }
-        else {
+        if (!farm.plant(x, y)) {
+
             OutputProcessor.get_output_Instatnce().ShowOutputError("Your watering system is not ready to use ... !");
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
         }
     }
 
     public void pickup_manage(int x,int y){
         switch (farm.pick_up(x,y)) {
             case 0:
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 1:
                 OutputProcessor.get_output_Instatnce().ShowOutputError("This Coordinates is empty ... !");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 2:
                 OutputProcessor.get_output_Instatnce().ShowOutputError("No SPACE ... !");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break; }
     }
 
     public void cage_manage(int x,int y){
         farm.cage(x,y);
-        InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
     }
 
     public void buy_domestic_animal(DomesticAnimal domesticName){
         if(farm.buy(domesticName)){
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
         }
         else{
             OutputProcessor.get_output_Instatnce().ShowOutputError("You need more coins ... !");
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
         }
     }
     public void buy_cat(){
         if(farm.buy_cat()){
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+            
         }
         else{
             OutputProcessor.get_output_Instatnce().ShowOutputError("You don`t have enough coin :(");
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+            
         }
     }
 
     public void buy_dog(){
-        if(farm.buy_dog()){
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
-        }
-        else{
+        if(!farm.buy_dog()){
             OutputProcessor.get_output_Instatnce().ShowOutputError("You don`t have enough coin :(");
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
         }
     }
 
@@ -203,33 +178,33 @@ public class Manager {
         switch (farm.work(workshopName)) {
             case 1 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("Workshop is busy ... !");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 2 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("You don`t have enough product ... !");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 0:
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 3:
                 OutputProcessor.get_output_Instatnce().ShowOutputError("not such a workshop");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
         }
     }
     public void workshop_builder(WorkshopList workshopNameToBuild){
         switch (farm.build(workshopNameToBuild)){
             case 0 :
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 1 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("You need more coin ...!");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 2 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("This workshop is already exist  ...!");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
         }
     }
@@ -249,64 +224,64 @@ public class Manager {
     public void loading_truck(ProductList productName){
         switch (farm.truck_load(productName)){
             case 0 :
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 1 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("Your truck is on the way ...");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 2 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("Storage is not enough ... !");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 3 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("This product does not exist ...");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 4 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("bug :(");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
         }
     }
     public void unloading_truck(ProductList productName){
         switch (farm.truck_unload(productName)){
             case 0 :
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 1 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("Your truck is on the way ...");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 2 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("This product does not exist...");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 3 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("The warehouse is full");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
             case 4 :
                 OutputProcessor.get_output_Instatnce().ShowOutputError("bug :(");
-                InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+
                 break;
         }
     }
     public void go_truck(){
         if(farm.truck_go()){
             OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Truck leaves farm successfully :) ");
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+            
         }
         else {
             OutputProcessor.get_output_Instatnce().ShowOutputError("Truck is on the way ... ");
-            InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+            
         }
     }
 
     public void inquiry_manage(){
 
         OutputProcessor.get_output_Instatnce().ShowOutputOfTurn_Inquiry(farm);
-        InstructionProcessor.get_instruction_Instatnce().UnderstandInstruction();
+        
     }
 //    public void Turn_Time() {
 //        int Time = farm.turn_cnt;

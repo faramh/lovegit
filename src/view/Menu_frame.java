@@ -50,20 +50,7 @@ public class Menu_frame {
         comboBox.setBounds(165, 425, 150, 25);
         comboBox.setVisible(true);
         comboBox.setBackground(Color.PINK);
-
-        int Int_Level;
-        if (comboBox.getSelectedIndex() == 1) {
-            Int_Level = 2;
-        } else if (comboBox.getSelectedIndex() == 2) {
-            Int_Level = 3;
-        } else if (comboBox.getSelectedIndex() == 3) {
-            Int_Level = 4;
-        } else if (comboBox.getSelectedIndex() == 4) {
-            Int_Level = 5;
-        } else {
-            Int_Level = 1;
-        }
-        Start(Int_Level);
+        Start();
 
        // Menu_frame.setContentPane(panel);
         Menu_frame.add(Setting);
@@ -152,7 +139,7 @@ public class Menu_frame {
             }
         });
          }
-    public void Start(int Level){
+    public void Start(){
         Start .setBounds(165,275,150,25);
         Start .setFocusable(false);
         Start .setFont(new Font(null,Font.BOLD,16));
@@ -161,15 +148,12 @@ public class Menu_frame {
         Start .addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(Manager.get_manager_Instatnce().level_Check(Level)){
+                if(Manager.get_manager_Instatnce().level_Check(comboBox.getSelectedIndex()+1)){
                     Menu_frame.dispose();
                     new Game_frame();
                 }
                 else{
-                    messageLabel.setBounds(200,200,100,50);
-                    messageLabel.setFont(new Font(null,Font.BOLD,16));
-                    messageLabel.setText("This Level Is Lock !");
-                    messageLabel.setVisible(true);
+                    OutputProcessor.get_output_Instatnce().ShowOutputError("this level is locked");
                 }
             }
 
