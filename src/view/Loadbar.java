@@ -1,9 +1,13 @@
 package view;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 public class Loadbar {
-    JFrame frame = new JFrame("                                                     Please Wait ...!");
+    JFrame frame = new JFrame("                                                        Please Wait ...!");
     JLabel label = new JLabel();
     JLabel cow_label =new JLabel();
     JProgressBar bar = new JProgressBar(0,100);
@@ -13,6 +17,32 @@ public class Loadbar {
 
 
     public Loadbar(){
+        //Ask close frame
+        frame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) { }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().exit();
+                if (JOptionPane.showConfirmDialog(null,"Are you sure you want to exit","",JOptionPane.YES_NO_OPTION)==0)
+                    System.exit(0);
+            }
+            @Override
+            public void windowClosed(WindowEvent e) { }
+            @Override
+            public void windowIconified(WindowEvent e) { }
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+            @Override
+            public void windowActivated(WindowEvent e) { }
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+        });
+        //
+
+        frame.setLocation(515,125);//Located frame in center of screen;
+
         frame.setIconImage(image_icon.getImage());
 
         bar.setValue(0);
@@ -20,7 +50,7 @@ public class Loadbar {
         bar.setStringPainted(true);
         bar.setFont(new Font("MV Boli",Font.BOLD,14));
         bar.setForeground(new Color(92, 189, 22));
-        bar.setBackground(Color.black);
+        bar.setBackground(Color.white);
 
         frame.getContentPane().setBackground(new Color(135,206,235));
 

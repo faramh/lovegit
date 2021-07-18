@@ -10,6 +10,9 @@ import control.UserDataBase;
 import view.*;
 
 public class Manager {
+    int Row;
+    int Col;
+
     //private InputProcessor inputProcessor;
     //private OutputProcessor outputProcessor;
     static GsonBuilder builder = new GsonBuilder();
@@ -64,7 +67,7 @@ public class Manager {
                 loged_in_user = udb.current_user;
                 return true;
             case ALREADY_EXIST:
-                OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("This username already exist ");
+                OutputProcessor.get_output_Instatnce().ShowOutputError("This username already exist ");
                 return false;
             case WEAK_PASSWORD:
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("The password is too weak"); // todo
@@ -282,6 +285,11 @@ public class Manager {
 
         OutputProcessor.get_output_Instatnce().ShowOutputOfTurn_Inquiry(farm);
         
+    }
+
+    public void setRowandCol(int Row1,int Col1){
+        Row = Row1;
+        Col = Col1;
     }
 //    public void Turn_Time() {
 //        int Time = farm.turn_cnt;

@@ -4,8 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import javax.sound.sampled.*;
 import javax.swing.*;
+
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
 
 public class login_Panel{
     public JFrame frame = new JFrame();
@@ -28,6 +31,32 @@ public class login_Panel{
     JPanel panel = new JPanel();
 
     public login_Panel(){
+        //Ask close frame
+        frame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        frame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) { }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().exit();
+                if (JOptionPane.showConfirmDialog(null,"Are you sure you want to exit","",JOptionPane.YES_NO_OPTION)==0)
+                    System.exit(0);
+            }
+            @Override
+            public void windowClosed(WindowEvent e) { }
+            @Override
+            public void windowIconified(WindowEvent e) { }
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+            @Override
+            public void windowActivated(WindowEvent e) { }
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+        });
+        //
+
+        frame.setLocation(515,125);//Located frame in center of screen;
+
         frame.getContentPane().setBackground(Color.orange);
 
         panel.setBounds(0, 0, 500, 554);
@@ -45,6 +74,7 @@ public class login_Panel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(checkBox.isSelected()){
+                    Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
                     userPasswordField.setEchoChar((char)0);
                 }
                 else{
@@ -61,7 +91,18 @@ public class login_Panel{
 
         farmer_Label.setBounds(0,50,500,554);
         farmer_Label.setIcon(farmer_icon);
-        //music(1);
+
+        //music();
+
+//        try {
+//            music(0);
+//        } catch (UnsupportedAudioFileException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } catch (LineUnavailableException e) {
+//            e.printStackTrace();
+//        }
 
 //        panel.add(loginButton);
 //        panel.add(SignUpButton);
@@ -101,6 +142,7 @@ public class login_Panel{
         resetButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
                 userIDField.setText("");
                 userPasswordField.setText("");
             }
@@ -109,25 +151,93 @@ public class login_Panel{
     public void Login_SignUp(){
         loginButton.setBounds(100,355,150,25);
         loginButton.setFocusable(false);
-        loginButton.addActionListener(new ActionListener() {
+        loginButton.addMouseListener(new MouseListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void mouseClicked(MouseEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
                 String username = userIDField.getText();
                 String password = String.valueOf(userPasswordField.getPassword());
-                Manager.get_manager_Instatnce().login_Check(username,password);
-                frame.dispose();
+//                try {
+//                    music(2);
+//                } catch (UnsupportedAudioFileException unsupportedAudioFileException) {
+//                    unsupportedAudioFileException.printStackTrace();
+//                } catch (IOException ioException) {
+//                    ioException.printStackTrace();
+//                } catch (LineUnavailableException lineUnavailableException) {
+//                    lineUnavailableException.printStackTrace();
+//                }
+               if(Manager.get_manager_Instatnce().login_Check(username,password)){
+                   frame.dispose();
+                   new Menu_frame();
+               }
+               else
+                   reset_key();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
             }
         });
+
+//        loginButton.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                String username = userIDField.getText();
+//                String password = String.valueOf(userPasswordField.getPassword());
+//                try {
+//                    music(2);
+//                } catch (UnsupportedAudioFileException unsupportedAudioFileException) {
+//                    unsupportedAudioFileException.printStackTrace();
+//                } catch (IOException ioException) {
+//                    ioException.printStackTrace();
+//                } catch (LineUnavailableException lineUnavailableException) {
+//                    lineUnavailableException.printStackTrace();
+//                }
+//                Manager.get_manager_Instatnce().login_Check(username,password);
+//                frame.dispose();
+//            }
+//        });
 
         SignUpButton.setBounds(250,355,150,25);
         SignUpButton.setFocusable(false);
         SignUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
                 String username= userIDField.getText();
                 String password = String.valueOf(userPasswordField.getPassword());
-                Manager.get_manager_Instatnce().signup_Password_Check(username,password);
-                frame.dispose();
+//                try {
+//                    music(2);
+//                } catch (UnsupportedAudioFileException unsupportedAudioFileException) {
+//                    unsupportedAudioFileException.printStackTrace();
+//                } catch (IOException ioException) {
+//                    ioException.printStackTrace();
+//                } catch (LineUnavailableException lineUnavailableException) {
+//                    lineUnavailableException.printStackTrace();
+//                }
+               if(Manager.get_manager_Instatnce().signup_Password_Check(username,password)){
+                   frame.dispose();
+                   new Menu_frame();
+               }
+               else{
+                   reset_key();
+               }
             }
         });
     }
@@ -141,24 +251,22 @@ public class login_Panel{
 
     }
 
-//    public void music(int a){
-//        Clip clip;
+//    public void music(){
+//    Clip clip;
 //        try {
-//            AudioInputStream input=AudioSystem.getAudioInputStream(new File("Downtempo-music-loop-102-bpm.wav"));
-//            clip=AudioSystem.getClip();
-//            clip.open(input);
-//            clip.start();
-//            //clip.loop(5);
-//            if(a==0){
-//                clip.stop();
-//            }
+//        AudioInputStream input=AudioSystem.getAudioInputStream(new File("Downtempo-music-loop-102-bpm.wav"));
+//        clip=AudioSystem.getClip();
+//        clip.open(input);
+//        clip.start();
+//        //clip.loop(5);
+//
 //        } catch (UnsupportedAudioFileException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
+//        e.printStackTrace();
+//     } catch (IOException e) {
+//        e.printStackTrace();
 //        } catch (LineUnavailableException e) {
-//            e.printStackTrace();
-//        }
+//        e.printStackTrace();
+//    }
 //    }
     public void reset_key(){
         userIDField.setText("");

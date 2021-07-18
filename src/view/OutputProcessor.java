@@ -23,9 +23,11 @@ public class OutputProcessor {
         this.mg = manager;
     }*/
     public void ShowOutputError(String Error){
+        Sound_Effect.get_Sound_Effect_Instatnce().error();
         JOptionPane.showMessageDialog(null,Error,"",JOptionPane.ERROR_MESSAGE);
     }
     public void ShowOutputUserNotice(String Notice){
+        Sound_Effect.get_Sound_Effect_Instatnce().notif();
         JOptionPane.showMessageDialog(null,Notice,"",JOptionPane.INFORMATION_MESSAGE);
     }
 

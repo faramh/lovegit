@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+
 public class Menu_frame {
     public JFrame Menu_frame = new JFrame("                                                      Menu Frame");
     JFrame Level_frame = new JFrame("Chose your Level :");
@@ -27,6 +29,33 @@ public class Menu_frame {
 
 
     public Menu_frame(){
+
+        //Ask close frame
+        Menu_frame.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        Menu_frame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) { }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().exit();
+                if (JOptionPane.showConfirmDialog(null,"Are you sure you want to exit","",JOptionPane.YES_NO_OPTION)==0)
+                    System.exit(0);
+            }
+            @Override
+            public void windowClosed(WindowEvent e) { }
+            @Override
+            public void windowIconified(WindowEvent e) { }
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+            @Override
+            public void windowActivated(WindowEvent e) { }
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+        });
+        //
+
+        Menu_frame.setLocation(515,125);//Located frame in center of screen;
+
         Menu_frame.getContentPane().setBackground(Color.orange);
         Menu_frame.setIconImage(image_icon.getImage());
         Menu_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,6 +79,7 @@ public class Menu_frame {
         comboBox.setBounds(165, 425, 150, 25);
         comboBox.setVisible(true);
         comboBox.setBackground(Color.PINK);
+
         Start();
 
        // Menu_frame.setContentPane(panel);
@@ -71,6 +101,7 @@ public class Menu_frame {
         logout.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
                 Menu_frame.dispose();
                 //login_Panel.get_login_Panel_Instatnce().music(0);
                 new login_Panel();
@@ -112,8 +143,54 @@ public class Menu_frame {
         Setting.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-               setting_panel.setVisible(true);
-               setting_panel.setBackground(Color.BLACK);
+                Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
+                JFrame Setting_frame = new JFrame("Setting");
+                Setting_frame.setIconImage(image_icon.getImage());
+                Setting_frame.setBounds(500,150,300,250);
+
+                String[] Map = {"Map : 5*5", "Map : 6*6", "Map : 7*7"};
+                JComboBox setting_comboBox = new JComboBox(Map);
+                setting_comboBox.setBounds(575, 160, 150, 25);
+                setting_comboBox.setVisible(true);
+                setting_comboBox.setBackground(Color.PINK);
+                Manager.get_manager_Instatnce().setRowandCol(comboBox.getSelectedIndex()+5,comboBox.getSelectedIndex()+5);
+
+                Setting_frame.setLayout(new FlowLayout());
+                JButton back = new JButton("Back");
+                back.setBounds(575,200,150,25);
+                back.addMouseListener(new MouseListener() {
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
+                        Setting_frame.dispose();
+                    }
+
+                    @Override
+                    public void mousePressed(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseReleased(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+
+                    }
+
+                    @Override
+                    public void mouseExited(MouseEvent e) {
+
+                    }
+                });
+                Setting_frame.add(setting_comboBox);
+                Setting_frame.add(back);
+                Setting_frame.setVisible(true);
+
+//                setting_panel.setVisible(true);
+//               setting_panel.setBackground(Color.BLACK);
             }
 
             @Override
@@ -148,12 +225,13 @@ public class Menu_frame {
         Start .addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
                 if(Manager.get_manager_Instatnce().level_Check(comboBox.getSelectedIndex()+1)){
                     Menu_frame.dispose();
-                    new Game_frame();
+                    new Game_window();
                 }
-                else{
-                    OutputProcessor.get_output_Instatnce().ShowOutputError("this level is locked");
+                else {
+                    OutputProcessor.get_output_Instatnce().ShowOutputError("This Level Is Lock ...!");
                 }
             }
 
