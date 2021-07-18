@@ -11,6 +11,7 @@ import java.text.FieldPosition;
 
 public class Main {
     public static void main(String[] args) {
+        Load_assets.initialize();
         try
         {
             String lookandfeel="com.jtattoo.plaf.mint.MintLookAndFeel";

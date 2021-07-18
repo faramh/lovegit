@@ -24,14 +24,14 @@ public class Game_window extends JFrame {
 
     public Game_window(){
         System.out.println("Game Window");
-        //set frame
+        //set frame--------------------------------------
         setBounds(0,0,1540,830);
         setLayout(null);
         setVisible(true);
-        //set background image
-        background_label.setBounds(0,0,1540,830);
+        //set background image-------------------------------
+        background_label.setBounds(0,0,1540,860);
         background_label.setIcon(background);
-        //background_label.setOpaque(false);
+        //background_label.setOpaque(false);----------------------
         //set board
         board = new Board(Manager.manager_state.Row, Manager.manager_state.Col);
         board.setBounds(295,205,900,610);
@@ -45,11 +45,11 @@ public class Game_window extends JFrame {
         //set workshop_left
         workshop_panel_left = new Workshop_panel_left();
         workshop_panel_left.setBounds(0,100,295,350);
-
-        //workshop_panel_left.setOpaque(false);
+        workshop_panel_left.setOpaque(false);
         //set workshop_right
         workshop_panel_right = new Workshop_panel_right();
-        workshop_panel_right.setBounds(0,450,295,450);
+        workshop_panel_right.setBounds(1300,450,295,450);
+        workshop_panel_right.setOpaque(false);
        // workshop_panel_right.setOpaque(false);
         //Watering System
         wateringSystem_panel = new WateringSystem_panel();
@@ -83,7 +83,7 @@ public class Game_window extends JFrame {
 
     void update_everything(){
         // board.refresh();
-        // workshop_panel_right.refresh();
+         workshop_panel_right.refresh();
         workshop_panel_left.refresh();
         //buying_animals.refresh();
         //warehouse_panel.refresh();

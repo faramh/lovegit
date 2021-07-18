@@ -3,6 +3,7 @@ package view;
 import model.WorkshopList;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Workshop_panel_left extends JPanel {//counting from top to bottom
     Single_workshop_panel mill_panel ;
@@ -15,6 +16,8 @@ public class Workshop_panel_left extends JPanel {//counting from top to bottom
         textTile_panel = new Single_workshop_panel(WorkshopList.textTile);
         milk_panel = new Single_workshop_panel(WorkshopList.MilkProcessing);
 
+        mill_panel.setPreferredSize(new Dimension(250,200));
+        mill_panel.setOpaque(false);
        // milk_panel.setBounds(0,0,);
 
         //todo set size and location

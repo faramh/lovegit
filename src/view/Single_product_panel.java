@@ -15,6 +15,7 @@ public class Single_product_panel extends JPanel {
     ProductList enum_name;
 
     Single_product_panel(ProductList name,int amount,boolean warehouse){
+        setOpaque(false);
         enum_name = name;
         label.setIcon(Load_assets.product(enum_name));
         label.setText(String.valueOf(amount));
