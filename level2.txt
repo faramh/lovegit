@@ -1,0 +1,38 @@
+{
+  "ProductTask": {
+    "egg": 4
+  },
+  "CoinTask": 100,
+  "due_time": 0,
+  "reward": 0,
+  "init_coin": 0,
+  "AnimalTask": {
+    "chicken": 4
+  },
+  "WildTasks": [
+    [],
+    [],
+    [
+      "lion"
+    ],
+    [],
+    [
+      "lion"
+    ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+  ]
+}

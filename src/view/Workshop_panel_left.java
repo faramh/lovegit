@@ -15,6 +15,8 @@ public class Workshop_panel_left extends JPanel {//counting from top to bottom
         textTile_panel = new Single_workshop_panel(WorkshopList.textTile);
         milk_panel = new Single_workshop_panel(WorkshopList.MilkProcessing);
 
+       // milk_panel.setBounds(0,0,);
+
         //todo set size and location
 
         add(mill_panel);
@@ -28,8 +30,5 @@ public class Workshop_panel_left extends JPanel {//counting from top to bottom
         textTile_panel.refresh();
         milk_panel.refresh();
     }
-
-
-
 
 }

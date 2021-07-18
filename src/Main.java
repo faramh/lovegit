@@ -21,9 +21,9 @@ public class Main {
             ex.printStackTrace();
         }
 
-        //new login_Panel();
+        new login_Panel();
         //new Menu_frame();
-        new Loadbar();
+        //new Loadbar();
        // new Game_frame();
     }
 }

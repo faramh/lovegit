@@ -24,7 +24,7 @@ public class Cell extends JPanel{
         col= c;
         listener();
         refresh();
-
+    setOpaque(false);
 
     }
 

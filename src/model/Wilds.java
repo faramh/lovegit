@@ -12,6 +12,7 @@ public class Wilds extends Animal{
     public Wilds(WildList name,int maxcol , int maxrow) {
         this.name = name;
         Random rand = new Random();
+        System.out.println("maxcol :"+maxcol);
         x_position = rand.nextInt(maxcol)+1;
         y_position = rand.nextInt(maxrow)+1;
     }

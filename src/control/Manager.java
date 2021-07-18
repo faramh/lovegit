@@ -10,8 +10,8 @@ import control.UserDataBase;
 import view.*;
 
 public class Manager {
-    int Row;
-    int Col;
+   public int Row = 6;
+    public int Col = 6;
     Auto_turn auto_turn = new Auto_turn();
     //private InputProcessor inputProcessor;
     //private OutputProcessor outputProcessor;
@@ -50,10 +50,10 @@ public class Manager {
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("wellcome "+ loged_in_user.username);
                 return true;
             case USERNAME_DOSENT_EXIST:
-                OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Username doesn't exist");
+                OutputProcessor.get_output_Instatnce().ShowOutputError("Username doesn't exist");
                 return false;
             case INCORRECT_PASSWORD:
-                OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Incorrect password");
+                OutputProcessor.get_output_Instatnce().ShowOutputError("Incorrect password");
                 return false;
         }
         return false;
@@ -70,11 +70,11 @@ public class Manager {
                 OutputProcessor.get_output_Instatnce().ShowOutputError("This username already exist ");
                 return false;
             case WEAK_PASSWORD:
-                OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("The password is too weak"); // todo
+                OutputProcessor.get_output_Instatnce().ShowOutputError("The password is too weak"); // todo
                 InputProcessor.get_input_Instatnce().login();
                 break;
             case INVALID_USERNAME:
-                OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("Invalid username"); //todo
+                OutputProcessor.get_output_Instatnce().ShowOutputError("Invalid username"); //todo
                 InputProcessor.get_input_Instatnce().login();
                 break;
         }

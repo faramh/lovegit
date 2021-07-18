@@ -3,7 +3,7 @@ package control;
 public class Auto_turn extends Thread {
 
     int state=0;
-    int time_duration_ms;
+    int time_duration_ms = 3000;
     int timer_ms;
     @Override
     public void run() {

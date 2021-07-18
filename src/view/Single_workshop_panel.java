@@ -28,7 +28,10 @@ public class Single_workshop_panel extends JPanel implements Animatable {
 
     Single_workshop_panel(WorkshopList lName){
         this.label_name = lName;
+        img.setIcon(Load_assets.workshop_img(label_name,1,1));
         name_price.setText(label_name.name()+" "+label_name.cost[0]+"$");
+
+        add(img);
         add(name_price);
         add(build);
         add(upgrade);
@@ -88,7 +91,7 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             return;
         }
         level = temp.level;
-        name_price.setText(label_name.name()+" "+label_name.cost[level]+"$");
+        name_price.setText(label_name.name()+" "+label_name.cost[level-1]+"$");
         if(temp.working){
             state = 1;
             upgrade.setEnabled(false);
@@ -98,6 +101,8 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             bar.setMaximum(temp.timeTodo);
             bar.setValue(temp.timer);
             animate.setFlag(true);
+
+            add(img);
         }else{
             state =3;
             bar.setMinimum(0);
@@ -107,6 +112,8 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             build.setEnabled(false);
             bar.setValue(0);
             animate.setFlag(false);
+            img.setIcon(Load_assets.workshop_img(label_name,1,level));
+            add(img);
         }
 
     }
