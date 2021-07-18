@@ -7,8 +7,8 @@ import java.util.Iterator;
 public class Farm {
 
 	public Tasks tasks =new Tasks();
-	final public int maxRow=6;
-	final public int maxCol=6;
+	public int maxRow=6;
+	public int maxCol=6;
 	public int turn_cnt =0;
 	public WateringSystem WS = new WateringSystem();
 	public vehicle truck = new vehicle();
@@ -23,7 +23,10 @@ public class Farm {
 	public int coins;
 
 
-	public Farm(Tasks tasks, int user_coin) {
+	public Farm(Tasks tasks, int user_coin,int col , int row) {
+		maxRow = row;
+		maxCol = col;
+
 		for (int i = 0; i <maxCol+1 ; i++) {
 			for (int j = 0; j <maxRow+1 ; j++) {
 				product_map[i][j] = new ArrayList<>();

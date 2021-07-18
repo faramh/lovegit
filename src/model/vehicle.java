@@ -3,13 +3,13 @@ package model;
 import java.util.HashMap;
 
 public class vehicle {
-    final int MaxCapacity=15;
+    public final int MaxCapacity=15;
     public int Loaded=0;
     final int timeTodo=10;
     public int timer;
     public int price=0;
     boolean present = true;
-    HashMap<ProductList, Integer> load = new HashMap<>() ;
+    public HashMap<ProductList, Integer> load = new HashMap<>() ;
 
     public vehicle() {
         ProductList [] all_products = new ProductList[12];

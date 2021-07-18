@@ -58,7 +58,7 @@ public class Menu_frame {
 
         Menu_frame.getContentPane().setBackground(Color.orange);
         Menu_frame.setIconImage(image_icon.getImage());
-        Menu_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Menu_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Menu_frame.setSize(550,650);
         Menu_frame.setLayout(null);
         Menu_frame.setVisible(true);

@@ -12,7 +12,7 @@ public class Game_window extends JFrame {
     Workshop_panel_right workshop_panel_right;  //todo
     WateringSystem_panel wateringSystem_panel ; //todo
     Buying_Animals buying_animals;
-    //todo Control_panel
+    Control_panel control_panel;
 
     Game_window(){
         // todo instantiates panels
@@ -48,9 +48,7 @@ public class Game_window extends JFrame {
         buying_animals.refresh();
         warehouse_panel.refresh();
         wateringSystem_panel.refresh();
-        //todo
-
-
+        control_panel.refresh();
 
     }
 

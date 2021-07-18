@@ -6,6 +6,7 @@ import model.WildList;
 import model.WorkshopList;
 
 import javax.swing.*;
+import java.util.ArrayList;
 
 public class Load_assets {
     static ImageIcon chicken = new ImageIcon();
@@ -15,6 +16,20 @@ public class Load_assets {
     static  ImageIcon cat = new ImageIcon();
     static ImageIcon dog = new ImageIcon();
     //todo change to array
+
+    static ImageIcon [] l1_CakeBakery = new ImageIcon[16];
+    static ImageIcon [] l2_CakeBakery = new ImageIcon[16];
+
+
+    //todo
+
+
+
+
+
+
+
+
 
     static ImageIcon egg = new  ImageIcon();
     static ImageIcon milk = new  ImageIcon();
@@ -32,6 +47,22 @@ public class Load_assets {
     //todo moving wild animals
     //todo workshop frames
     //todo well
+
+
+    static void initialize (){
+        for (int i = 0; i < 16; i++) {
+            l1_CakeBakery[i]= new ImageIcon("resources\\CakeBakery\\Level1\\"+String.valueOf(i+1));
+        }
+
+
+
+
+
+
+
+    }
+
+
 
 
     static ImageIcon cat_img (){
@@ -60,7 +91,24 @@ public class Load_assets {
         return null;
     }
 
-    static ImageIcon workshop_img (WorkshopList name,int frame,int leve){
+    static ImageIcon workshop_img (WorkshopList name,int frame,int level){
+        switch (name){
+            case mill :
+                if(level==1){
+                    return l1_CakeBakery[frame];
+
+
+                }else{
+
+
+                }
+
+
+
+
+
+        }
+
 
         //todo
         return null;

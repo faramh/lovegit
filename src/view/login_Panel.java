@@ -130,7 +130,7 @@ public class login_Panel{
         frame.add(Label);
         frame.add(farmer_Label);
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(550,650);
         frame.setLayout(null);
         frame.setVisible(true);

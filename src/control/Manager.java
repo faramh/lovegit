@@ -12,7 +12,7 @@ import view.*;
 public class Manager {
     int Row;
     int Col;
-
+    Auto_turn auto_turn = new Auto_turn();
     //private InputProcessor inputProcessor;
     //private OutputProcessor outputProcessor;
     static GsonBuilder builder = new GsonBuilder();
@@ -37,7 +37,7 @@ public class Manager {
             for (int i = 1; i < 6; i++) {
                 manager_state.all_tasks[i-1]= gson.fromJson(FileOperator.reading("level"+i+".txt"),Tasks.class);
             }
-
+            manager_state.auto_turn.start();
            // manager_state.udb = FileOperator.getUserData();//todo
         }
         return manager_state;
@@ -98,10 +98,18 @@ public class Manager {
 
     }
 
+    public void pause (){
+        auto_turn.pause();
+    }
+    public void play (){
+        auto_turn.play();
+    }
+
     public boolean level_Check(int level){
         if (loged_in_user.level>=level){
             OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("starting level "+ level);
-            farm = new Farm(all_tasks[level-1],loged_in_user.reward_coin);//todo
+            farm = new Farm(all_tasks[level-1],loged_in_user.reward_coin,Col,Row);
+            auto_turn.play();
             return true;
         }
         else{
@@ -212,6 +220,7 @@ public class Manager {
         }
     }
     public void turn_manager(int time_scale){
+        auto_turn.reset();
         for (int i = 0; i < time_scale; i++) {
             if (farm.turn()){
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("level completed");
@@ -222,6 +231,10 @@ public class Manager {
         }
         inquiry_manage();
 
+    }
+
+    public void changing_turn_time(int seconds){
+        auto_turn.setTime_duration_ms(seconds*1000);
     }
 
     public void loading_truck(ProductList productName){
