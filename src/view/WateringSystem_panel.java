@@ -11,7 +11,7 @@ public class WateringSystem_panel extends JPanel implements Animatable {
     Animation animation = new Animation(this);
 
     int frame_cnt = 1;
-    final int max_frame = 7 ; //todo
+    final int max_frame = 7 ;
     @Override
     public void nextFrame() {
         frame_cnt++;
@@ -48,7 +48,17 @@ public class WateringSystem_panel extends JPanel implements Animatable {
     }
 
 
-    //todo
+    WateringSystem_panel(){
+
+
+        //todo add components and set size and
+
+
+        refresh();
+    }
+
+
+
 
 
 }

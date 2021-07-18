@@ -22,7 +22,7 @@ public class Single_workshop_panel extends JPanel implements Animatable {
     Workshop object;
     Animation animate = new Animation(this);
 
-    final int max_frames = 10;//todo
+    final int max_frames = 16;
     int frame_cnt =1,level;
     int state=2; //1 busy    2 not built    3 ready
 
@@ -33,6 +33,9 @@ public class Single_workshop_panel extends JPanel implements Animatable {
         add(build);
         add(upgrade);
         add(work);
+
+        //todo set size and location
+
         animate.setDaemon(true);
         animate.start();
         work.addActionListener(new ActionListener() {
@@ -61,7 +64,7 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             }
         });
 
-
+        refresh();
 
     }
 
@@ -80,7 +83,8 @@ public class Single_workshop_panel extends JPanel implements Animatable {
            work.setEnabled(false);
            build.setEnabled(true);
            animate.setFlag(false);
-           img.setIcon(Load_assets.workshop_img(label_name,1,1));
+           //img.setIcon(Load_assets.workshop_img(label_name,1,1));
+            remove(img);
             return;
         }
         level = temp.level;

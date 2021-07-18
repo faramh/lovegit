@@ -1,9 +1,7 @@
 package view;
 
 import control.Manager;
-import model.Domestics;
-import model.Product;
-import model.Wilds;
+import model.*;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;
@@ -15,13 +13,17 @@ public class Cell extends JPanel{
     ArrayList<JLabel> animals = new ArrayList<>();
     ArrayList <JLabel> products = new ArrayList<>();
     ArrayList<JLabel> wilds =  new ArrayList<>();
+    ArrayList<JLabel> cats = new ArrayList<>();
+    ArrayList<JLabel> dogs = new ArrayList<>();
+    int grass =0;
     int row , col;
     int x,y,h,w;
 
     Cell(int c,int r){//todo
         row = r;
         col= c;
-
+        listener();
+        refresh();
 
 
     }
@@ -72,7 +74,15 @@ public class Cell extends JPanel{
         refresh_animals();
         refresh_products();
         refresh_wilds();
+        refresh_cats();
+        refresh_dogs();
+        refresh_grass();
         add_everything();
+    }
+
+    private void refresh_grass (){
+        grass = Manager.get_manager_Instatnce().farm.grass[col][row];
+
     }
 
     private void refresh_animals (){
@@ -86,6 +96,27 @@ public class Cell extends JPanel{
         }
     }
 
+    private void refresh_cats (){
+        cats.clear();
+
+        for (Cat d:Manager.get_manager_Instatnce().farm.cats) {
+            if ((d.x_position==col)&&(d.y_position==row)){
+                JLabel temp = new JLabel(Load_assets.cat_img());
+                dogs.add(temp);
+            }
+        }
+    }
+
+    private void refresh_dogs (){
+        animals.clear();
+
+        for (Dog d:Manager.get_manager_Instatnce().farm.dogs) {
+            if ((d.x_position==col)&&(d.y_position==row)){
+                JLabel temp = new JLabel(Load_assets.dog_img());
+                cats.add(temp);
+            }
+        }
+    }
     private void refresh_products (){
         products.clear();
         for (Product p:Manager.get_manager_Instatnce().farm.product_map[col][row]) {
@@ -99,12 +130,17 @@ public class Cell extends JPanel{
         for (Wilds d:Manager.get_manager_Instatnce().farm.WildesInFarm) {
             if ((d.x_position==col)&&(d.y_position==row)){
                 JLabel temp = new JLabel(Load_assets.wild(d.name,d.cageCounter));
-                animals.add(temp);
+                wilds.add(temp);
             }
         }
     }
 
     private void add_everything(){
+        removeAll();
+        revalidate();
+        repaint();
+
+
 
         //todo
 

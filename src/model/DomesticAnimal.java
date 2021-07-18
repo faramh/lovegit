@@ -4,7 +4,7 @@ public enum DomesticAnimal {
     chicken(100,2,ProductList.egg),
     turkey(200,3,ProductList.fabric),
     buffalo(400,5,ProductList.milk);
-    int cost;
+    public int cost;
     int timeTodo;
     ProductList product;
 

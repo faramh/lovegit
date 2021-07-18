@@ -17,6 +17,7 @@ public class Board extends JPanel {
                 add(cells[i][j]);
             }
         }
+        refresh();
 
     }
 

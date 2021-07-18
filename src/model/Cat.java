@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public class Cat extends Animal{
-    static final int price = 150;
+    public static final int price = 150;
 
     public Cat() {
         x_position =1;

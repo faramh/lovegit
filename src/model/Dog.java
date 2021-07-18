@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Random;
 
 public class Dog extends Animal{
-        static final int price =100 ;
+    public static final int price =100 ;
     public void move (int maxcol, int maxrow){
 
         Random rand = new Random();

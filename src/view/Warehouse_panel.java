@@ -27,6 +27,12 @@ public class Warehouse_panel extends JPanel {//todo adding a preview frame
                 }
             }
         }
+        removeAll();
+        revalidate();
+        repaint();
+        //todo add items to panel and set size and layout
+
+
 
 
     }

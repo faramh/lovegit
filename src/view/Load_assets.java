@@ -12,6 +12,10 @@ public class Load_assets {
     static ImageIcon turkey = new ImageIcon();
     static ImageIcon buffalo = new ImageIcon();
 
+    static  ImageIcon cat = new ImageIcon();
+    static ImageIcon dog = new ImageIcon();
+    //todo change to array
+
     static ImageIcon egg = new  ImageIcon();
     static ImageIcon milk = new  ImageIcon();
     static ImageIcon flour = new  ImageIcon();
@@ -23,6 +27,22 @@ public class Load_assets {
     static ImageIcon caged_lion = new  ImageIcon();
     static ImageIcon caged_bear = new  ImageIcon();
     static ImageIcon caged_tiger = new  ImageIcon();
+
+
+    //todo moving wild animals
+    //todo workshop frames
+    //todo well
+
+
+    static ImageIcon cat_img (){
+        //todo
+        return null;
+    }
+
+    static ImageIcon dog_img(){
+        //todo
+        return null;
+    }
 
     static ImageIcon domestic (DomesticAnimal name,int health){
         //todo
@@ -51,6 +71,15 @@ public class Load_assets {
         //todo
         return null;
     }
+
+    static ImageIcon animal_icon(int code, int mode){
+        // code : 0 = chicken   1 = turkey    2 = buffalo    3 = cat      4 = dog
+        // mode : 0 =unavailable    2= normal     3 = hover
+        //todo
+        return null;
+
+    }
+
 
 
 }
