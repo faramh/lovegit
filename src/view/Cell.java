@@ -4,6 +4,9 @@ import control.Manager;
 import model.*;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -15,6 +18,8 @@ public class Cell extends JPanel{
     ArrayList<JLabel> wilds =  new ArrayList<>();
     ArrayList<JLabel> cats = new ArrayList<>();
     ArrayList<JLabel> dogs = new ArrayList<>();
+    Border border;
+
     int grass =0;
     int row , col;
     int x,y,h,w;
@@ -71,6 +76,9 @@ public class Cell extends JPanel{
     }
 
     void refresh(){
+
+
+        grass = Manager.get_manager_Instatnce().farm.grass[col][row];
         refresh_animals();
         refresh_products();
         refresh_wilds();
@@ -91,6 +99,7 @@ public class Cell extends JPanel{
         for (Domestics d:Manager.get_manager_Instatnce().farm.AnimalInFarm) {
             if ((d.x_position==col)&&(d.y_position==row)){
                 JLabel temp = new JLabel(Load_assets.domestic(d.AnimalName,d.health));
+                //JLabel temp = new JLabel(new ImageIcon("resources\\Hen\\5H.png"));
                 animals.add(temp);
             }
         }
@@ -102,18 +111,18 @@ public class Cell extends JPanel{
         for (Cat d:Manager.get_manager_Instatnce().farm.cats) {
             if ((d.x_position==col)&&(d.y_position==row)){
                 JLabel temp = new JLabel(Load_assets.cat_img());
-                dogs.add(temp);
+                cats.add(temp);
             }
         }
     }
 
     private void refresh_dogs (){
-        animals.clear();
+        dogs.clear();
 
         for (Dog d:Manager.get_manager_Instatnce().farm.dogs) {
             if ((d.x_position==col)&&(d.y_position==row)){
-                JLabel temp = new JLabel(Load_assets.dog_img());
-                cats.add(temp);
+                JLabel temp = new JLabel(Load_assets.cat_img());
+                dogs.add(temp);
             }
         }
     }
@@ -139,10 +148,34 @@ public class Cell extends JPanel{
         removeAll();
         revalidate();
         repaint();
+        if (grass==0)
+            border = new LineBorder(new Color(0xC4B304),1);
+        else
+            border = new LineBorder(new Color(0x39D900),grass+1);
 
+        this.setBorder(border);
 
+        setLayout(new GridLayout(2,2));
+        for (JLabel x:wilds) {
+            add(x);
+        }
 
-        //todo
+        for (JLabel x:products) {
+            add(x);
+        }
+
+        for (JLabel x:animals) {
+            add(x);
+        }
+
+        for (JLabel x:cats) {
+            add(x);
+        }
+
+        for (JLabel x:dogs) {
+            add(x);
+        }
+
 
     }
 }

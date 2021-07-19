@@ -226,7 +226,10 @@ public class Manager {
                 OutputProcessor.get_output_Instatnce().ShowOutputUserNotice("level completed");
                 loged_in_user.level++;
                 FileOperator.Writing(gson.toJson(udb,UserDataBase.class),"data.txt");
-                InputProcessor.get_input_Instatnce().menu();
+                farm = null;
+                Game_window.get_instance().dispose();
+                new Menu_frame();
+
             }
         }
         inquiry_manage();

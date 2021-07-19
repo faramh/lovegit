@@ -5,10 +5,10 @@ import java.util.HashMap;
 public class vehicle {
     public final int MaxCapacity=15;
     public int Loaded=0;
-    final int timeTodo=10;
+    public final int timeTodo=10;
     public int timer;
     public int price=0;
-    boolean present = true;
+    public boolean present = true;
     public HashMap<ProductList, Integer> load = new HashMap<>() ;
 
     public vehicle() {

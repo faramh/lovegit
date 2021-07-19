@@ -14,8 +14,16 @@ public class Workshop_panel_right extends JPanel {
         bakery_panel = new Single_workshop_panel(WorkshopList.bakery);
         tailoring_panel = new Single_workshop_panel(WorkshopList.tailoring);
         ice_cream_panel = new Single_workshop_panel(WorkshopList.iceCreamProcessing);
+
         bakery_panel.setPreferredSize(new Dimension(250,200));
         bakery_panel.setOpaque(false);
+
+        tailoring_panel.setPreferredSize(new Dimension(250,200));
+        tailoring_panel.setOpaque(false);
+
+        ice_cream_panel.setPreferredSize(new Dimension(250,200));
+        ice_cream_panel.setOpaque(false);
+
         add(bakery_panel);
         add(tailoring_panel);
         add(ice_cream_panel);

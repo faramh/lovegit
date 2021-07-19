@@ -1,6 +1,7 @@
 package view;
 
 import control.Manager;
+import model.DomesticAnimal;
 import model.Workshop;
 import model.WorkshopList;
 
@@ -30,23 +31,29 @@ public class Single_workshop_panel extends JPanel implements Animatable {
     int state=2; //1 busy    2 not built    3 ready
 
     Single_workshop_panel(WorkshopList lName){
-        Border b = new LineBorder(new Color(0x0303E0),1,false);
-        setBorder(b);
+        //  Border b = new LineBorder(new Color(0x0303E0),1,false);
+        // setBorder(b);
 
-        setLayout(new FlowLayout());
+
+        setLayout(null);
 
         this.label_name = lName;
         img.setIcon(Load_assets.workshop_img(label_name,1,1));
-        //System.out.println(img.getIcon().getIconHeight());
         name_price.setText(label_name.name()+" "+label_name.cost[0]+"$");
-        img.setPreferredSize(new Dimension(150,150));
-       img.setBorder(new LineBorder(new Color(0x48DC0E),1,false));
-        img.setText("hello");
+        name_price.setFont(new Font(null,Font.BOLD,16));
+        img.setBounds(0,0,150,150);
+        build.setBounds(img.getWidth()-150,img.getWidth()-10,50,25);
+        upgrade.setBounds(img.getWidth()-95,img.getWidth()-10,50,25);
+        work.setBounds(img.getWidth()-45,img.getWidth()-10,50,25);
+        //img.setPreferredSize(new Dimension(150,150));
+        // img.setBorder(new LineBorder(new Color(0x48DC0E),1,false));
+        setOpaque(false);
         add(img);
         add(name_price);
         add(build);
         add(upgrade);
         add(work);
+
 
         //todo set size and location
 
@@ -65,7 +72,7 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             public void actionPerformed(ActionEvent e) {
                 Manager.get_manager_Instatnce().workshop_builder(label_name);
                 Game_window.get_instance().update_everything();
-
+               // Manager.get_manager_Instatnce().buy_domestic_animal(DomesticAnimal.chicken);
             }
         });
 
@@ -78,7 +85,7 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             }
         });
 
-          refresh();
+        refresh();
 
     }
 
@@ -91,13 +98,13 @@ public class Single_workshop_panel extends JPanel implements Animatable {
             }
         }
         if (temp == null){
-           state = 2;
+            state = 2;
             name_price.setText(label_name.name()+" "+label_name.cost[0]+"$");
             upgrade.setEnabled(false);
-           work.setEnabled(false);
-           build.setEnabled(true);
-           animate.setFlag(false);
-           img.setIcon(Load_assets.workshop_img(label_name,1,1));
+            work.setEnabled(false);
+            build.setEnabled(true);
+            animate.setFlag(false);
+            img.setIcon(Load_assets.workshop_img(label_name,1,1));
             //remove(img);
             return;
         }
@@ -130,10 +137,11 @@ public class Single_workshop_panel extends JPanel implements Animatable {
     @Override
     public void nextFrame(){
         frame_cnt++;
-            if (frame_cnt>max_frames)
-                frame_cnt=1;
-            img.setIcon(Load_assets.workshop_img(label_name,frame_cnt,level));
+        if (frame_cnt>max_frames)
+            frame_cnt=1;
+        img.setIcon(Load_assets.workshop_img(label_name,frame_cnt,level));
 
     }
 
 }
+

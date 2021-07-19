@@ -4,13 +4,31 @@ import control.Manager;
 import model.ProductList;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Warehouse_panel extends JPanel {//todo adding a preview frame
     ArrayList<JLabel> items = new ArrayList<>();
+    JButton view_button = new JButton("View Warehouse");
+    //JButton load_truck = new JButton("Load truck");
+    Truck_loading_frame tlf;
+    JProgressBar truck_bar= new JProgressBar(0,Manager.get_manager_Instatnce().farm.truck.timeTodo);
+
 
     Warehouse_panel(){
+        add(view_button);
+        add(truck_bar);
+        tlf = new Truck_loading_frame();
+        tlf.exit();
+        view_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                tlf.show_up();
+                tlf.refresh();
+            }
+        });
 
      refresh();
     }
@@ -26,7 +44,10 @@ public class Warehouse_panel extends JPanel {//todo adding a preview frame
                     items.add(temp);
                 }
             }
+
         }
+
+        truck_bar.setValue(Manager.get_manager_Instatnce().farm.truck.timer);
         removeAll();
         revalidate();
         repaint();

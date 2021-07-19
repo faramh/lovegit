@@ -16,9 +16,15 @@ public class Workshop_panel_left extends JPanel {//counting from top to bottom
         textTile_panel = new Single_workshop_panel(WorkshopList.textTile);
         milk_panel = new Single_workshop_panel(WorkshopList.MilkProcessing);
 
-        mill_panel.setPreferredSize(new Dimension(250,200));
+        mill_panel.setPreferredSize(new Dimension(155,200));
         mill_panel.setOpaque(false);
-       // milk_panel.setBounds(0,0,);
+
+        textTile_panel.setPreferredSize(new Dimension(155,200));
+        textTile_panel.setOpaque(false);
+
+        milk_panel.setPreferredSize(new Dimension(155,200));
+        milk_panel.setOpaque(false);
+
 
         //todo set size and location
 

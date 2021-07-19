@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class Single_product_panel extends JPanel {
     JButton add_to_truck = new JButton("Add to truck");
     JButton remove_from_truck = new JButton("Remove from truck");
-    JLabel label ;
+    JLabel label =new JLabel() ;
     ProductList enum_name;
 
     Single_product_panel(ProductList name,int amount,boolean warehouse){
@@ -23,6 +23,7 @@ public class Single_product_panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Manager.get_manager_Instatnce().unloading_truck(enum_name);
+                Game_window.get_instance().update_everything();
             }
         });
 
@@ -30,6 +31,8 @@ public class Single_product_panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Manager.get_manager_Instatnce().loading_truck(enum_name);
+                Game_window.get_instance().update_everything();
+
             }
         });
         add(label);

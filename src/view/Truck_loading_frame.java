@@ -3,6 +3,7 @@ package view;
 import control.Manager;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,7 +15,16 @@ public class Truck_loading_frame extends JFrame {
     Truck_loading_frame(){
         //todo adding panels
         //todo setting size
-
+        setSize(700,600);
+        setLayout(new FlowLayout());
+        truck_panel = new Truck_panel();
+        truck_panel.setPreferredSize(new Dimension(350,400));
+        warehouse_to_truck_panel = new Warehouse_to_truck_panel();
+        warehouse_to_truck_panel.setPreferredSize(new Dimension(350,400));
+        add(truck_panel);
+        add(warehouse_to_truck_panel);
+        add(go);
+        add(cancel);
 
         go.addActionListener(new ActionListener() {
             @Override
@@ -43,6 +53,10 @@ public class Truck_loading_frame extends JFrame {
     }
 
     void refresh (){
+        go.setEnabled((!Manager.get_manager_Instatnce().farm.truck.load.isEmpty())
+                && ((Manager.get_manager_Instatnce().farm.truck.present)));
+
+
         truck_panel.refresh();
         warehouse_to_truck_panel.refresh();
 

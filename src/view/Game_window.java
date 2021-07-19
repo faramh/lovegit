@@ -31,38 +31,42 @@ public class Game_window extends JFrame {
         //set background image-------------------------------
         background_label.setBounds(0,0,1540,860);
         background_label.setIcon(background);
-        //background_label.setOpaque(false);----------------------
-        //set board
+        background_label.setOpaque(false);
+        //set board------------------------------------------
         board = new Board(Manager.manager_state.Row, Manager.manager_state.Col);
         board.setBounds(295,205,900,610);
-        //board.setBackground(Color.BLACK);
         board.setOpaque(false);
-        //set warehouse
+        //set warehouse---------------------------------------
         warehouse_panel = new Warehouse_panel();
-        warehouse_panel.setBounds(1195,0,345,830);
-        //warehouse_panel.setBackground(Color.BLUE);
+        warehouse_panel.setBounds(1195,610,345,250);
         warehouse_panel.setOpaque(false);
-        //set workshop_left
+        //set workshop_left-----------------------------------
         workshop_panel_left = new Workshop_panel_left();
-        workshop_panel_left.setBounds(0,100,295,350);
+        workshop_panel_left.setBounds(0,100,295,600);
         workshop_panel_left.setOpaque(false);
-        //set workshop_right
+        //set workshop_right-------------------------------------
         workshop_panel_right = new Workshop_panel_right();
-        workshop_panel_right.setBounds(1300,450,295,450);
+        workshop_panel_right.setBounds(1300,100,295,600);
         workshop_panel_right.setOpaque(false);
-       // workshop_panel_right.setOpaque(false);
-        //Watering System
+        //Watering System------------------------------------------
         wateringSystem_panel = new WateringSystem_panel();
         wateringSystem_panel.setBounds(745,100,155,150);
         wateringSystem_panel.setOpaque(false);
-        // wateringSystem_panel.setBackground(Color.CYAN);
+        //buying Animal---------------------------------------------
+        buying_animals = new Buying_Animals();
+        buying_animals.setBounds(0,0,100,900);
+        buying_animals.setOpaque(false);
+        //----------------------------------------------------------
+
 
 
         add(board);
-        add(warehouse_panel);
+        warehouse_panel.view_button.setBounds(1400,750,70,40);
+        add(warehouse_panel.view_button);
         add(workshop_panel_left);
         add(workshop_panel_right);
         add(wateringSystem_panel);
+        add(buying_animals);
         add(background_label);
 
         // todo instantiates panels
@@ -72,7 +76,7 @@ public class Game_window extends JFrame {
 
     static Game_window instance;
 
-    static Game_window get_instance(){
+    public static Game_window get_instance(){
         if (instance==null){
             instance = new Game_window();
             return instance;
@@ -81,13 +85,13 @@ public class Game_window extends JFrame {
 
     }
 
-    void update_everything(){
-        // board.refresh();
-         workshop_panel_right.refresh();
+    public void update_everything(){
+        board.refresh();
+        workshop_panel_right.refresh();
         workshop_panel_left.refresh();
-        //buying_animals.refresh();
-        //warehouse_panel.refresh();
-        //wateringSystem_panel.refresh();
+        buying_animals.refresh();
+        warehouse_panel.refresh();
+        wateringSystem_panel.refresh();
         //todo
 
 

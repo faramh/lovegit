@@ -15,9 +15,9 @@ public class Load_assets {
     static ImageIcon []buyCat = new ImageIcon[3];
     static ImageIcon []well = new ImageIcon[7];
 
-    static  ImageIcon cat = new ImageIcon();
-    static ImageIcon dog = new ImageIcon();
-    //todo change to array
+    static  ImageIcon cat = new ImageIcon("resources\\cat.png");
+    static ImageIcon dog = new ImageIcon("resources\\dog.png");
+
 
     static ImageIcon [] l1_CakeBakery = new ImageIcon[16];
     static ImageIcon [] l2_CakeBakery = new ImageIcon[16];
@@ -83,19 +83,19 @@ public class Load_assets {
 
 
         for (int i = 0; i < 3; i++) {
-            buffalo[i]= new ImageIcon("resources\\icons\\"+String.valueOf(i+1)+"B.png");
+            buffalo[i]= new ImageIcon("resources\\icons\\B"+String.valueOf(i+1)+".png");
         }
         for (int i = 0; i < 3; i++) {
-            buyCat[i]= new ImageIcon("resources\\icons\\"+String.valueOf(i+1)+"C.png");
+            buyCat[i]= new ImageIcon("resources\\icons\\C"+String.valueOf(i+1)+".png");
         }
         for (int i = 0; i < 3; i++) {
-            buyDog[i]= new ImageIcon("resources\\icons\\"+String.valueOf(i+1)+"D.png");
+            buyDog[i]= new ImageIcon("resources\\icons\\D"+String.valueOf(i+1)+".png");
         }
         for (int i = 0; i < 3; i++) {
-            chicken[i]= new ImageIcon("resources\\icons\\"+String.valueOf(i+1)+"H.png");
+            chicken[i]= new ImageIcon("resources\\icons\\H"+String.valueOf(i+1)+".png");
         }
         for (int i = 0; i < 3; i++) {
-            turkey[i]= new ImageIcon("resources\\icons\\"+String.valueOf(i+1)+"T.png");
+            turkey[i]= new ImageIcon("resources\\icons\\T"+String.valueOf(i+1)+".png");
         }
 
 
@@ -157,7 +157,7 @@ public class Load_assets {
             Bufalo[i]= new ImageIcon("resources\\Bufalo\\"+String.valueOf(i+1)+"B.png");
         }
         for (int i = 0; i < 7; i++) {
-            well[i]= new ImageIcon("resources\\well\\"+String.valueOf(i+1)+".png");
+            well[i]= new ImageIcon("resources\\well\\"+String.valueOf(i+1)+".png");// todo
         }
 
 
@@ -176,6 +176,7 @@ public class Load_assets {
     }
 
     static ImageIcon domestic (DomesticAnimal name,int health){
+        health/=10;
         switch (name){
             case turkey:
                 return Turkey[health-1];
@@ -239,13 +240,13 @@ public class Load_assets {
 
         switch (name){
             case lion:
-                return Lion[cage-1];
+                return Lion[cage];
 
             case bear:
-                return Bear[cage-1];
+                return Bear[cage];
 
             case tiger:
-                return Tiger[cage-1];
+                return Tiger[cage];
 
             default:
                 return null;

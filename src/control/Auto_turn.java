@@ -1,5 +1,7 @@
 package control;
 
+import view.Game_window;
+
 public class Auto_turn extends Thread {
 
     int state=0;
@@ -18,6 +20,7 @@ public class Auto_turn extends Thread {
                 timer_ms = 0;
                 if (state ==1){
                     Manager.get_manager_Instatnce().turn_manager(1);
+                    Game_window.get_instance().update_everything();
                 }
             }
 
