@@ -56,6 +56,12 @@ public class Load_assets {
     static ImageIcon iceCream = new ImageIcon();
     static ImageIcon milkProcess = new ImageIcon();
 
+    static  ImageIcon grass1 = new ImageIcon();
+    static  ImageIcon grass2 = new ImageIcon();
+    static  ImageIcon grass3 = new ImageIcon();
+    static  ImageIcon grass4 = new ImageIcon();
+
+
 
 
     //todo moving wild animals
@@ -75,6 +81,11 @@ public class Load_assets {
         caged_tiger = new ImageIcon("resources\\Products\\tigercaged.png");
         cat = new ImageIcon("resources\\cat.png");
         dog = new ImageIcon("resources\\dog.png");
+
+        grass1 = new ImageIcon("resources\\grass\\grass1.png");
+        grass2 = new ImageIcon("resources\\grass\\grass2.png");
+        grass3 = new ImageIcon("resources\\grass\\grass3.png");
+        grass4 = new ImageIcon("resources\\grass\\grass4.png");
 
 
 
@@ -233,6 +244,21 @@ public class Load_assets {
         }
 
         return null;
+
+    }
+
+
+    static  ImageIcon getGrass (int count){
+        switch (count){
+            case 1:
+                return grass1;
+            case 2:
+                return grass2;
+            case 3:
+                return grass3;
+            default:
+                return grass4;
+        }
 
     }
 

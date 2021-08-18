@@ -13,6 +13,7 @@ public class Truck_panel extends JPanel {
     JProgressBar truck_capacity = new JProgressBar(0, Manager.get_manager_Instatnce().farm.truck.MaxCapacity);
 
     Truck_panel (){
+        setOpaque(false);
         setPreferredSize(new Dimension(350,500));
         refresh();
     }

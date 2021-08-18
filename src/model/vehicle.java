@@ -66,6 +66,7 @@ public class vehicle {
         if (present){
             present=false;
             timer=0;
+
             return  true;
         }
         return  false;
@@ -79,6 +80,8 @@ public class vehicle {
         timer++;
          if(timer==timeTodo)
         {
+            load.clear();
+            Loaded=0;
             present=true;
             coin=price;
             price=0;

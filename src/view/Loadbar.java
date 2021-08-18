@@ -75,7 +75,7 @@ public class Loadbar {
         while(counter<=100) {
             bar.setValue(counter);
             try {
-                Thread.sleep(50);
+                Thread.sleep(10);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

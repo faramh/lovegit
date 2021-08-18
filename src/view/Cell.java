@@ -13,11 +13,16 @@ import java.util.ArrayList;
 
 public class Cell extends JPanel{
 
+    
+    JPanel background = new JPanel();
+    JPanel foreground = new JPanel();
+    
     ArrayList<JLabel> animals = new ArrayList<>();
     ArrayList <JLabel> products = new ArrayList<>();
     ArrayList<JLabel> wilds =  new ArrayList<>();
     ArrayList<JLabel> cats = new ArrayList<>();
     ArrayList<JLabel> dogs = new ArrayList<>();
+    JLabel grassLabel = new JLabel();
     Border border;
 
     int grass =0;
@@ -144,37 +149,63 @@ public class Cell extends JPanel{
         }
     }
 
-    private void add_everything(){
+    private void add_everything() {
         removeAll();
         revalidate();
         repaint();
-        if (grass==0)
-            border = new LineBorder(new Color(0xC4B304),1);
-        else
-            border = new LineBorder(new Color(0x39D900),grass+1);
+        
+        foreground.removeAll();
+        foreground.revalidate();
+        foreground.repaint();
 
-        this.setBorder(border);
+        background.removeAll();
+        background.revalidate();
+        background.repaint();
+//        if (grass==0)
+//            border = new LineBorder(new Color(0xC4B304),1);
+//        else
+//            border = new LineBorder(new Color(0x39D900),grass+1);
 
-        setLayout(new GridLayout(2,2));
+
+
+//        this.setBorder(border);
         for (JLabel x:wilds) {
-            add(x);
+            foreground.add(x);
         }
 
         for (JLabel x:products) {
-            add(x);
+            foreground.add(x);
         }
 
         for (JLabel x:animals) {
-            add(x);
+            foreground.add(x);
         }
 
         for (JLabel x:cats) {
-            add(x);
+            foreground.add(x);
         }
 
         for (JLabel x:dogs) {
-            add(x);
+            foreground.add(x);
         }
+
+        //setLayout(null);
+        if (grass!=0){
+            grassLabel = new JLabel(Load_assets.getGrass(grass));
+            grassLabel.setBounds(0,0,100,100);
+            grassLabel.setOpaque(false);
+            background.add(new JLabel(Load_assets.getGrass(grass)));
+        }
+
+        setLayout(null);
+        foreground.setBounds(0,0,getWidth(),getWidth());
+        background.setBounds(0,0,getWidth(),getWidth());
+        foreground.setOpaque(false);
+        background.setOpaque(false);
+        add(foreground);
+        add(background);
+
+
 
 
     }

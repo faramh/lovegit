@@ -154,15 +154,26 @@ public class Menu_frame {
                 setting_comboBox.setVisible(true);
                 setting_comboBox.setBackground(Color.PINK);
                 Manager.get_manager_Instatnce().setRowandCol(comboBox.getSelectedIndex()+5,comboBox.getSelectedIndex()+5);
-
+                setting_comboBox.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                         Manager.get_manager_Instatnce().setRowandCol(setting_comboBox.getSelectedIndex()+5,setting_comboBox.getSelectedIndex()+5);
+                        System.out.println("selected"+setting_comboBox.getSelectedIndex()+5);
+                    }
+                });
                 String[] turn = {"Turn : 3", "Turn : 5", "Turn : 7"};
                 JComboBox turn_comboBox = new JComboBox(turn);
                 turn_comboBox.setBounds(75, 90, 150, 25);
                 turn_comboBox.setVisible(true);
                 turn_comboBox.setBackground(Color.PINK);
                 //Manager.get_manager_Instatnce().changing_turn_time(2*turn_comboBox.getSelectedIndex()+3);
+                turn_comboBox.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        Manager.get_manager_Instatnce().changing_turn_time(2*turn_comboBox.getSelectedIndex()+3);
 
-
+                    }
+                });
                 Setting_frame.setLayout(null);
                 JButton back = new JButton("Back");
                 back.setBounds(75,120,150,25);
@@ -170,6 +181,11 @@ public class Menu_frame {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         Sound_Effect.get_Sound_Effect_Instatnce().button_sound_effect();
+                      //  Manager.get_manager_Instatnce().setRowandCol(comboBox.getSelectedIndex()+5,comboBox.getSelectedIndex()+5);
+
+                        //Manager.get_manager_Instatnce().changing_turn_time(2*turn_comboBox.getSelectedIndex()+3);
+
+
                         Setting_frame.dispose();
                     }
 

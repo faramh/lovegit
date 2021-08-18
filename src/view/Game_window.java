@@ -7,9 +7,13 @@ import model.WorkshopList;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 public class Game_window extends JFrame {
 
+
+    JLabel coin = new JLabel();
     Board board;
     Warehouse_panel warehouse_panel;            //todo
     Workshop_panel_left workshop_panel_left;    //todo
@@ -23,6 +27,27 @@ public class Game_window extends JFrame {
     //todo Control_panel
 
     public Game_window(){
+        this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+        this.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) { }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Sound_Effect.get_Sound_Effect_Instatnce().exit();
+                if (JOptionPane.showConfirmDialog(null,"Are you sure you want to exit?  your progress wont be saved","",JOptionPane.YES_NO_OPTION)==0)
+                    System.exit(0);
+            }
+            @Override
+            public void windowClosed(WindowEvent e) { }
+            @Override
+            public void windowIconified(WindowEvent e) { }
+            @Override
+            public void windowDeiconified(WindowEvent e) { }
+            @Override
+            public void windowActivated(WindowEvent e) { }
+            @Override
+            public void windowDeactivated(WindowEvent e) { }
+        });
         System.out.println("Game Window");
         //set frame--------------------------------------
         setBounds(0,0,1540,830);
@@ -50,7 +75,7 @@ public class Game_window extends JFrame {
         workshop_panel_right.setOpaque(false);
         //Watering System------------------------------------------
         wateringSystem_panel = new WateringSystem_panel();
-        wateringSystem_panel.setBounds(745,100,155,150);
+        wateringSystem_panel.setBounds(745,60,155,150);
         wateringSystem_panel.setOpaque(false);
         //buying Animal---------------------------------------------
         buying_animals = new Buying_Animals();
@@ -58,11 +83,16 @@ public class Game_window extends JFrame {
         buying_animals.setOpaque(false);
         //----------------------------------------------------------
 
-
-
+        coin.setBounds(1400,100,120,40);
+        coin.setText(String.valueOf(Manager.get_manager_Instatnce().farm.coins));
+        coin.setFont(new Font(null,Font.BOLD,28));
+        coin.setForeground(new Color(0x6F6FFF));
+        add(coin);
         add(board);
-        warehouse_panel.view_button.setBounds(1400,750,70,40);
+        warehouse_panel.view_button.setBounds(1400,750,130,40);
         add(warehouse_panel.view_button);
+        warehouse_panel.truck_bar.setBounds(1400,700,80,40);
+        add(warehouse_panel.truck_bar);
         add(workshop_panel_left);
         add(workshop_panel_right);
         add(wateringSystem_panel);
@@ -86,6 +116,7 @@ public class Game_window extends JFrame {
     }
 
     public void update_everything(){
+        coin.setText(String.valueOf(Manager.get_manager_Instatnce().farm.coins));
         board.refresh();
         workshop_panel_right.refresh();
         workshop_panel_left.refresh();

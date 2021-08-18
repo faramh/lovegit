@@ -5,6 +5,7 @@ import model.Product;
 import model.ProductList;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +16,11 @@ public class Single_product_panel extends JPanel {
     ProductList enum_name;
 
     Single_product_panel(ProductList name,int amount,boolean warehouse){
+        setPreferredSize(new Dimension(300,45));
         setOpaque(false);
+        setLayout(null);
+        label.setBounds(0,0,70,40);
+        add_to_truck.setBounds(220,0,80,35);
         enum_name = name;
         label.setIcon(Load_assets.product(enum_name));
         label.setText(String.valueOf(amount));
@@ -23,6 +28,7 @@ public class Single_product_panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Manager.get_manager_Instatnce().unloading_truck(enum_name);
+
                 Game_window.get_instance().update_everything();
             }
         });
@@ -41,6 +47,8 @@ public class Single_product_panel extends JPanel {
             add(add_to_truck);
         else
             add(remove_from_truck);
+
+
 
 
 
